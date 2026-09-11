@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Something For You 🤍</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(100, 50, 70, 0.12), transparent 35%),
+      radial-gradient(circle at 80% 80%, rgba(180, 130, 70, 0.08), transparent 35%),
+      #080808;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    color: #eee;
+    padding: 20px;
+  }
+
+  /* Subtle background texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    z-index: 0;
+  }
+
+  .hearts span {
+    position: fixed;
+    bottom: -30px;
+    font-size: 18px;
+    color: #b98b73;
+    opacity: 0;
+    animation: float 12s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .hearts span:nth-child(2) { left: 28%; animation-delay: 3s; }
+  .hearts span:nth-child(3) { left: 48%; animation-delay: 6s; }
+  .hearts span:nth-child(4) { left: 70%; animation-delay: 1s; }
+  .hearts span:nth-child(5) { left: 88%; animation-delay: 8s; }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    15% { opacity: 0.45; }
+    75% { opacity: 0.3; }
+    100% {
+      transform: translateY(-110vh) rotate(180deg);
+      opacity: 0;
+    }
+  }
+
+  .container {
+    width: 100%;
+    max-width: 680px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .welcome-card,
+  .message-card {
+    position: relative;
+    background: linear-gradient(
+      145deg,
+      rgba(30, 30, 30, 0.96),
+      rgba(14, 14, 14, 0.98)
+    );
+    border: 1px solid rgba(190, 145, 110, 0.22);
+    border-radius: 4px;
+    padding: 70px 45px;
+    box-shadow:
+      0 30px 100px rgba(0, 0, 0, 0.7),
+      0 0 50px rgba(150, 90, 70, 0.04);
+    overflow: hidden;
+  }
+
+  /* Elegant corner lines */
+  .welcome-card::before,
+  .message-card::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 35px;
+    height: 35px;
+    border-top: 1px solid #9d765f;
+    border-left: 1px solid #9d765f;
+    opacity: 0.7;
+  }
+
+  .welcome-card::after,
+  .message-card::after {
+    content: "";
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    width: 35px;
+    height: 35px;
+    border-bottom: 1px solid #9d765f;
+    border-right: 1px solid #9d765f;
+    opacity: 0.7;
+  }
+
+  .small-text {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #a98976;
+    margin-bottom: 25px;
+    font-weight: 400;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 12vw, 92px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #e8d8cc;
+    line-height: 1;
+    margin-bottom: 25px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 2.1;
+    letter-spacing: 0.5px;
+    color: #99918d;
+    margin-bottom: 40px;
+  }
+
+  .heart-icon {
+    font-size: 28px;
+    color: #b98b73;
+    margin-bottom: 22px;
+    animation: heartbeat 2.5s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.12); opacity: 1; }
+  }
+
+  button {
+    border: 1px solid rgba(185, 139, 115, 0.65);
+    background: transparent;
+    color: #d8bbaa;
+    padding: 16px 34px;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  button:hover {
+    background: #b98b73;
+    color: #111;
+    border-color: #b98b73;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(185, 139, 115, 0.15);
+  }
+
+  .message-card {
+    display: none;
+    text-align: left;
+    animation: appear 1s ease forwards;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .message-card .top {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .message-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #e8d8cc;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .divider {
+    width: 45px;
+    height: 1px;
+    background: #b98b73;
+    margin: 20px auto 30px;
+    opacity: 0.8;
+  }
+
+  .message-content {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    line-height: 1.9;
+    color: #cfc1ba;
+    white-space: pre-line;
+  }
+
+  .signature {
+    text-align: right;
+    margin-top: 35px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #b98b73;
+    font-style: italic;
+  }
+
+  .back-button {
+    display: block;
+    margin: 35px auto 0;
+    background: transparent;
+    color: #8f817a;
+    border: 1px solid rgba(185, 139, 115, 0.3);
+    box-shadow: none;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .back-button:hover {
+    background: rgba(185, 139, 115, 0.1);
+    color: #d8bbaa;
+    border-color: #b98b73;
+    box-shadow: none;
+  }
+
+  @media (max-width: 500px) {
+    .welcome-card,
+    .message-card {
+      padding: 50px 25px;
+    }
+
+    h1 {
+      font-size: 60px;
+    }
+
+    .message-card h2 {
+      font-size: 42px;
+    }
+
+    .message-content {
+      font-size: 21px;
+      line-height: 1.8;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="hearts">
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>♥</span>
+    <span>♡</span>
+  </div>
+
+  <div class="container">
+
+    <!-- Welcome Screen -->
+    <div class="welcome-card" id="welcome">
+      <div class="heart-icon">🤍</div>
+
+      <div class="small-text">A little surprise for you</div>
+
+      <h1>Hello Shri</h1>
+
+      <p class="subtitle">
+        Something special is waiting for you here.<br>
+        Take a little moment, and open it when you're ready.
+      </p>
+
+      <button onclick="openMessage()">
+        Open Your Surprise 💌
+      </button>
+    </div>
+
+    <!-- Message Screen -->
+    <div class="message-card" id="message">
+
+      <div class="top">
+        <div class="heart-icon">♡</div>
+        <h2>For You, Shri</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="message-content">
+        My dearest Shri,  
+                               yaru vanthalum shri is someone I owned for myself and I have the full responsibility to keep him the way he wanted to be .
+                               I would fell thousand times only if you are one gonna rise me again!!! not just word but my damnnn blood promises 
+                               I planned every weekend to be endlike manirathanam spiceyyy scene how could these kids ghost themselves and I admire the way every corner of our home to reflect our love we held and sunshine you're beeingggg!!!!
+                               beauty of sea and mystery of waves will only understood by the sailors who daily wore as the pride and  the hope of returning to the home and not to the one who fear themselves for lost in the sea .
+                               I imagine the frames which reflects the raw and uncuted version of us .the concept of love and seashore may look similar likeeee everytime
+                               the sea takes the unbothered sand to deep into and left back to the place were it belongs to similaryy he might take me to the thoughts were it felt lost but in the refining process the wound in me heals and give back my shine ...
+                               every time his voice feels like the first breeze that hits the ears after rushing all throw the roads and the kid inside him reflects the story of the boy who never left the grief&fear of the girl how want to loved .
+                               he always ensure that his girl is happy and treated like angel .he learned how to play around her and keep her happy ....
+                               this stupid boy once ranged me and ensured that I would never leave him at any cost as he got some bad dream I still remember sleepy voice that pleased and asked assurance as if I am gonna leave him over someone...even if I have plan like that perumal itself blashhhh me like something....
+                               my biggest achievement is to have a man who is always be the NO1 person I ever have after him I stopped for searching someone who will be my bsffff but as plot twist he is HEREEEE!!! as my whole ashhh he is bestfriend my kundukutty nd my biGGGGG achievement after all he is the calmmmm to my chaosssssss!!!! 
+                               I also admire him the way his brain works like bruhhh smart than meee and also to taste him such way like he taste the kajukattili .
+                               to make him feel like sexiually assaulted and baby him babdlyyy.... to bite him to make him the happiest boyyyy exists and make his every long roads trips easier and every night ends with the glimasssss here scriptedddd and MAIN MAINNN to make his simile wider andd louder i would dooo anythinggggggg........
+ 
+       
+      </div>
+
+      <div class="signature">
+        With all my love, ♡
+      </div>
+
+      <button class="back-button" onclick="goBack()">
+        Read it again
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    function openMessage() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goBack() {
+      document.getElementById("message").style.display = "none";
+      document.getElementById("welcome").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
